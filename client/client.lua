@@ -5,6 +5,10 @@ local keybind = lib.addKeybind({
     defaultKey = 'TAB',
     onPressed = function(self)
 		local scoreboardInfo = lib.callback.await('scoreboard:getInfo')
+        if scoreboardInfo.PLAYERS and scoreboardInfo.PLAYERS[tostring(cache.serverId)] then
+            scoreboardInfo.PLAYERS[tostring(cache.serverId)].self = true
+        end
+
 		SendNUIMessage({ action = 'scoreboardInfo', data = scoreboardInfo})
       	utils.toggleNuiFrame(false)
     end,

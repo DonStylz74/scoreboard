@@ -18,7 +18,7 @@ export default function Player({ playerData, T }: any) {
             )}
 
 
-            {playerData[playerSource].connecting ? (
+            {playerData[playerSource].player_is_connecting ? (
               <Tooltip color={theme.colors.gray[5]} withArrow label={T.player_is_connecting}>
                 <Loader size={24} color={theme.primaryColor} />
               </Tooltip>
