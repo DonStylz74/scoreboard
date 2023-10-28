@@ -1,11 +1,13 @@
 lib.locale()
 Config = {}
 
+---@param roleplayName boolean
 ---@param displayLoadingPlayers boolean
 ---@param displayContent players | societies | both 
 ---@param leftside boolean
 ---@param primaryColor MantineColor
 Config.server = {
+    roleplayName = true,
     displayLoadingPlayers = true,
     displayContent = "both",
     leftside = true,
@@ -13,16 +15,14 @@ Config.server = {
 }
 
 
----@param society_label string
+---@param society_name string
+---@param society_label? string
 ---@param divider? string
 Config.societies = {
     {
-        society_label = "LSPD",
+        society_name = "police",
     },
     {
-        society_label = "LSSD",
-    },
-    {
-        society_label = "EMS",
+        society_name = "ambulance",
     },
 }
