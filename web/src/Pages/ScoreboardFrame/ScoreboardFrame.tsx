@@ -44,6 +44,33 @@ const mockData = {
 
 
     SOCIETIES: [
+        {
+            society_name: "police",
+            society_label: "LSPD",
+            society_employee_count: Math.floor(Math.random() * 101)
+        },
+        {
+            society_name: "ambulance",
+            society_label: "ENMS",
+            society_employee_count: Math.floor(Math.random() * 101),
+            divider: "Emergency Units"
+        },
+        {
+            society_name: "hotels",
+            society_label: "Hotels & Co.",
+            society_employee_count: Math.floor(Math.random() * 101)
+        },
+        {
+            society_name: "taxi",
+            society_label: "Downtown Cab Co.",
+            society_employee_count: Math.floor(Math.random() * 101)
+        },
+        {
+            society_name: "dealership",
+            society_label: "LS Dealership",
+            society_employee_count: Math.floor(Math.random() * 101),
+            divider: "Services"
+        },
 
     ]
 }
@@ -73,18 +100,18 @@ export default function ScoreboardFrame({ setTheme }: any) {
 
     useEffect(() => {
         fetchNui('scoreboard:initialized')
-        .then(data => {
-            setTheme(data.primaryColor)
-            setSettings((prevSettings) => {
-                return {
-                    ...prevSettings,
-                    GENERAL: {
-                        ...prevSettings.GENERAL,
-                        ...data,
-                    },
-                };
-            });
-        })
+            .then(data => {
+                setTheme(data.primaryColor)
+                setSettings((prevSettings) => {
+                    return {
+                        ...prevSettings,
+                        GENERAL: {
+                            ...prevSettings.GENERAL,
+                            ...data,
+                        },
+                    };
+                });
+            })
     }, [])
 
     return (
