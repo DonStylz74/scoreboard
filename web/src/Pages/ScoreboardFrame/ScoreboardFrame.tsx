@@ -24,19 +24,40 @@ const mockData = {
     },
     PLAYERS: {
         1: {
-            playerName: "mikigoalie",
+            playerName: "Michael De Santa",
             tags: true,
             self: true
         },
         2: {
-            playerName: "Welfare"
+            playerName: "Franklin Clinton"
         },
         3: {
-            playerName: "jonyzera"
+            playerName: "Trevor Philips"
         },
         4: {
-            playerName: "youtubefak",
+            playerName: "Lester Crest",
             connecting: true
+        },
+        5: {
+            playerName: "Dave Norton",
+        },
+        6: {
+            playerName: "Lamar Davis",
+        },
+        7: {
+            playerName: "Steve Haines",
+        },
+        8: {
+            playerName: "Devin Weston",
+        },
+        9: {
+            playerName: "Amanda De Santa",
+        },
+        10: {
+            playerName: "Tracey De Santa",
+        },
+        11: {
+            playerName: "Brad Snider",
         },
 
     },
@@ -45,31 +66,36 @@ const mockData = {
 
     SOCIETIES: [
         {
-            society_name: "police",
-            society_label: "LSPD",
+            society_name: "a",
+            society_label: "Los Santos Police Department",
             society_employee_count: Math.floor(Math.random() * 101)
         },
         {
-            society_name: "ambulance",
-            society_label: "ENMS",
+            society_name: "b",
+            society_label: "Emergency Medical Services",
             society_employee_count: Math.floor(Math.random() * 101),
             divider: "Emergency Units"
         },
         {
-            society_name: "hotels",
-            society_label: "Hotels & Co.",
+            society_name: "a",
+            society_label: "Ferocious",
             society_employee_count: Math.floor(Math.random() * 101)
         },
         {
-            society_name: "taxi",
-            society_label: "Downtown Cab Co.",
-            society_employee_count: Math.floor(Math.random() * 101)
-        },
-        {
-            society_name: "dealership",
-            society_label: "LS Dealership",
+            society_name: "b",
+            society_label: "Maibatsu Corporation",
             society_employee_count: Math.floor(Math.random() * 101),
-            divider: "Services"
+        },
+        {
+            society_name: "c",
+            society_label: "Benefactor",
+            society_employee_count: Math.floor(Math.random() * 101),
+        },
+        {
+            society_name: "d",
+            society_label: "Dinka",
+            society_employee_count: Math.floor(Math.random() * 101),
+            divider: "Vehicle companies"
         },
 
     ]
