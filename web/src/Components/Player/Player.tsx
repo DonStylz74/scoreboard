@@ -14,7 +14,14 @@ export default function Player({ playerData, T }: any) {
           }
           <div style={{ display: "flex", justifyContent: "flex-end", columnGap: "1rem" }}>
             {playerData[playerSource].tags && (
-              <Avatar size={28} radius="xl" variant='light' color="green.4">{<span style={{ fontWeight: "500", fill: `var(--mantine-color-${"green"}-4)` }}>{ScoreboardIcons.Star}</span>}</Avatar>
+              //@ts-ignore
+              Object.keys(playerData[playerSource].tags).map(tagName => (
+                <Avatar key={tagName} size={28} radius="xl" variant='light' color={playerData[playerSource].tags[tagName].color}>
+                  <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${playerData[playerSource].tags[tagName].color}-4)` }}>
+                    {(ScoreboardIcons as any)[playerData[playerSource].tags[tagName].icon]}
+                  </span>
+                </Avatar>
+              ))
             )}
 
 

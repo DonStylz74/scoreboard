@@ -25,7 +25,12 @@ const mockData = {
     PLAYERS: {
         1: {
             playerName: "Michael De Santa",
-            tags: true,
+            tags: {
+              admin: {
+                color: "blue",
+                icon: "Star"
+              }, 
+            },
             self: true
         },
         2: {
