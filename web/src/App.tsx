@@ -20,7 +20,9 @@ const theme = createTheme({
 
 function App() {
   //@ts-ignore
-  const [customTheme, setCustomTheme] = useState({})
+  const [customTheme, setCustomTheme] = useState({
+    primaryColor: "violet"
+  })
 
   return <MantineProvider theme={{ ...theme, ...customTheme }} defaultColorScheme='dark'>
     <ScoreboardFrame setTheme={(color: any) => setCustomTheme({

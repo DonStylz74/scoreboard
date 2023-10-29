@@ -5,5 +5,7 @@
     "societies": "Societies",
     "employees": "Employees",
     "serverid": "Server ID",
-    "player_is_connecting": "Player is connecting"
+    "player_is_connecting": "Player is connecting",
+    "scoreboard": "Scoreboard",
+    "toggle_alt_name": "Toggle alternative name"
 }

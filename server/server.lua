@@ -96,7 +96,8 @@ lib.callback.register('scoreboard:getInitialData', function(source)
             societies = locale('societies'),
             employees = locale('employees'),
             serverid = locale('serverid'),
-            player_is_connecting = locale('player_is_connecting')
+            player_is_connecting = locale('player_is_connecting'),
+            scoreboard = locale('scoreboard')
         }
     }
 end)

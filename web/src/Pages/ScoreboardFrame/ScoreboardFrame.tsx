@@ -19,22 +19,33 @@ const mockData = {
             societies: "Societies",
             employees: "Employees",
             serverid: "Server ID",
-            player_is_connecting: "Player is connecting"
+            player_is_connecting: "Player is connecting",
+            scoreboard: "Scoreboard",
+            toggle_alt_name: "Toggle alternative name"
         }
     },
     PLAYERS: {
         1: {
             playerName: "Michael De Santa",
+            alternativeName: "Alternative Michael De Santa",
             tags: {
               admin: {
                 color: "blue",
-                icon: "Star"
+                icon: "Star",
+                tooltip: "admin",
               }, 
+              owner: {
+                color: "red",
+                icon: "Star",
+                tooltip: "Owner",
+              }, 
+
             },
             self: true
         },
         2: {
-            playerName: "Franklin Clinton"
+            playerName: "Franklin Clinton",
+            alternativeName: "Alternative Franklin Clinton",
         },
         3: {
             playerName: "Trevor Philips"
@@ -171,7 +182,7 @@ export default function ScoreboardFrame({ setTheme }: any) {
                             /*                             WebkitTextStrokeWidth: "0.1rem",
                                                         WebkitTextStrokeColor: "white" */
                         }}>
-                            Scoreboard
+                            {settings.GENERAL.UI.scoreboard}
                         </div>
                         <Divider my="sm" />
                         <div style={{ paddingLeft: "2rem", paddingRight: "2rem", display: "flex", flexDirection: "column" }}>

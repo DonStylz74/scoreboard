@@ -1,44 +1,89 @@
-import { useMantineTheme, Paper, Avatar, Loader, Tooltip, Text } from '@mantine/core';
+import { useMantineTheme, Paper, Avatar, Loader, Tooltip, Text, darken } from '@mantine/core';
 import ScoreboardIcons from '../ScoreboardIcons.';
 
-export default function Player({ playerData, T }: any) {
+const TagWithTooltip = ({ tagName, tagData }: any) => {
+  const hasTooltip = tagData.tooltip;
+  console.log(tagData)
+
+
+  return hasTooltip ? (
+    <Tooltip label={hasTooltip}>
+      <Avatar
+        key={tagName}
+        size={28}
+        radius="xl"
+        variant="light"
+        color={tagData.color}
+      >
+        <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${tagData.color}-4)` }}>
+          {(ScoreboardIcons as any)[tagData.icon]}
+        </span>
+      </Avatar>
+    </Tooltip>
+  ) : (
+    <Avatar
+      key={tagName}
+      size={28}
+      radius="xl"
+      variant="light"
+      color={tagData.color}
+    >
+      <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${tagData.color}-4)` }}>
+        {(ScoreboardIcons as any)[tagData.icon]}
+      </span>
+    </Avatar>
+  );
+};
+
+export default function Player({ playerData, T, showAlternative }: any) {
   const theme = useMantineTheme();
+
   return (
     <>
-      {Object.keys(playerData).map((playerSource: any, index: any) => <div key={index} >
-        <Paper style={{ borderColor: playerData[playerSource].self && `var(--mantine-color-${theme.primaryColor}-filled)`, textAlign: "center", height: "3.5rem", backgroundColor: theme.colors.dark[8], marginBottom: ".5rem", display: "flex", justifyContent: "space-between", alignItems: "center", padding: '0.1rem 1rem 0.1rem 1rem' }} withBorder radius="xl">
-          {
-            <Text style={{ maxWidth: "15vw" }} fw={300} truncate="end">
-              {playerData[playerSource].playerName}
+      {Object.keys(playerData).map((playerSource: any, index: any) => (
+        <div key={index}>
+          <Paper
+            style={{
+              maxWidth: "10vw",
+              minWidth: "20vw", // Set a maximum width for the container
+              borderColor: playerData[playerSource].self && `var(--mantine-color-${theme.primaryColor}-filled)`,
+              textAlign: "center",
+              height: "3.5rem",
+              backgroundColor: theme.colors.dark[8],
+              marginBottom: ".5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: '0.1rem 1rem 0.1rem 1rem',
+            }}
+            withBorder
+            radius="xl"
+          >
+            <Text
+              c={showAlternative ? playerData[playerSource].alternativeName ? "inherit" : darken("#e80a0a", 0.3) : "inherit"}
+              fw={300}
+              truncate="end"
+            >
+              {showAlternative ? playerData[playerSource].alternativeName ? playerData[playerSource].alternativeName : playerData[playerSource].playerName : playerData[playerSource].playerName}
             </Text>
-          }
-          <div style={{ display: "flex", justifyContent: "flex-end", columnGap: "1rem" }}>
-            {playerData[playerSource].tags && (
-              //@ts-ignore
-              Object.keys(playerData[playerSource].tags).map(tagName => (
-                <Avatar key={tagName} size={28} radius="xl" variant='light' color={playerData[playerSource].tags[tagName].color}>
-                  <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${playerData[playerSource].tags[tagName].color}-4)` }}>
-                    {(ScoreboardIcons as any)[playerData[playerSource].tags[tagName].icon]}
-                  </span>
+            <div style={{ display: "flex", justifyContent: "flex-end", columnGap: "1rem" }}>
+              {playerData[playerSource].tags &&
+                Object.keys(playerData[playerSource].tags).map((tagName) => (
+                  <TagWithTooltip key={tagName} tagName={tagName} tagData={playerData[playerSource].tags[tagName]} />
+                ))}
+              {playerData[playerSource].player_is_connecting ? (
+                <Tooltip color={theme.colors.gray[5]} withArrow label={T.player_is_connecting}>
+                  <Loader size={24} color={theme.primaryColor} />
+                </Tooltip>
+              ) : (
+                <Avatar size={28} radius="xl" color={theme.primaryColor}>
+                  <span style={{ fontWeight: "500" }}>{playerSource}</span>
                 </Avatar>
-              ))
-            )}
-
-
-            {playerData[playerSource].player_is_connecting ? (
-              <Tooltip color={theme.colors.gray[5]} withArrow label={T.player_is_connecting}>
-                <Loader size={24} color={theme.primaryColor} />
-              </Tooltip>
-
-            ) : (
-              <Avatar size={28} radius="xl" color={theme.primaryColor}>{<span style={{ fontWeight: "500" }}>{playerSource}</span>}</Avatar>
-            )}
-          </div>
-
-        </Paper>
-      </div>
-      )}
+              )}
+            </div>
+          </Paper>
+        </div>
+      ))}
     </>
-
-  )
+  );
 }
