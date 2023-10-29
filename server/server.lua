@@ -39,49 +39,6 @@ local function serverCreated()
 
 end CreateThread(serverCreated)
 
-local function frameworkEvents()
-    while not Config.serverCore do
-        Wait(1000)
-    end
-
-    if Config.serverCore == "esx" then
-        RegisterNetEvent('esx:playerLoaded', function(player, xPlayer, isNew)
-            local data = {
-                playerName = GetPlayerName(serverid),
-                player_is_connecting = false,
-            }
-
-            data.alternativeName = Config.server.roleplayName and data.playerName or xPlayer.name
-            if Config.server.roleplayName then
-                data.playerName = xPlayer.name 
-            end
-
-            if xPlayer.group == "admin" then
-                data.tags = {
-                    admin = {
-                        color = "blue",
-                        icon = "Star",
-                        tooltip = "STAFF Team",
-                    }, 
-                }
-            end
-
-            modules.players.addPlayer(tostring(xPlayer.source), data)
-
-        end)
-          
-        RegisterNetEvent('esx:playerLogout', function(playerId, cb)
-            modules.players.addPlayer(tostring(xPlayer.source), {
-                playerName = GetPlayerName(playerId),
-                player_is_connecting = true
-            })
-        end)
-
-          
-    end
-end CreateThread(frameworkEvents)
-
-
 
 if Config.server.displayLoadingPlayers then
     AddEventHandler('playerJoining', function()

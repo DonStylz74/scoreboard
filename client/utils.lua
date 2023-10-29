@@ -1,15 +1,29 @@
+local scoreboardOpened = false
+local function disableKeys()
+	while scoreboardOpened do
+		Wait(0)
+		DisablePlayerFiring(cache.playerId, true)
+		HudWeaponWheelIgnoreSelection()
+		DisableControlAction(0, 1, true)
+		DisableControlAction(0, 2, true)
+		DisableControlAction(0, 140, true)
+		DisableControlAction(0, 177, true)
+		DisableControlAction(0, 199, true)
+		DisableControlAction(0, 200, true)
+		DisableControlAction(0, 202, true)
+		DisableControlAction(2, 19, true)
+	end
+end
 local scoreboardUtils = {  
     loaded = false,
-    visible = false,
     toggleNuiFrame = function(boolean)
-          SetNuiFocus(not visible, not visible)
-          SetNuiFocusKeepInput(not visible)
-          SendNUIMessage({
-            action = 'setVisible',
-            data = not visible
-          })
-          visible = not visible
-        end
+		scoreboardOpened = not scoreboardOpened
+		TriggerScreenblurFadeIn(250.0)
+		CreateThread(disableKeys)
+        SetNuiFocus(scoreboardOpened, scoreboardOpened)
+        SetNuiFocusKeepInput(scoreboardOpened)
+        SendNUIMessage({ action = 'setVisible', data = scoreboardOpened })
+    end
  }
 
 RegisterNUICallback('scoreboard:initialized', function(_, cb)
@@ -20,9 +34,14 @@ end)
 
 
 RegisterNUICallback('scoreboard:onClose', function(data, cb)
-    SetNuiFocus(false, false)
+	SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
-    scoreboardUtils.visible = false
+    TriggerScreenblurFadeOut(500.0)
+	CreateThread( function()
+		Wait(100)
+		scoreboardOpened = false
+	end)
+
     cb({})
 end)
 

@@ -11,7 +11,6 @@ local players = {
     end,
     removePlayer = function(source)
         if playerlist[source] then
-            print(('Removing %s'):format(source))
             playerlist[source] = nil
         end
     end,
