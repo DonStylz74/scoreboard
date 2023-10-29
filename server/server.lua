@@ -1,16 +1,8 @@
 local max_players = GetConvar('sv_maxclients', 0)
 local modules = require "server.modules"
-local function resourceStarted(name)
-    return GetResourceState(name):find('start') ~= nil
-end
-
-local function getCore()
-    return resourceStarted('es_extended') and "esx" or resourceStarted('qb-core') and 'qb' or resourceStarted('ox_core') and 'ox' or 'standalone'
-end
 
 local function serverCreated()
-    Config.serverCore = getCore()
-    Config.core = Config.serverCore == "esx" and exports.es_extended:getSharedObject() or exports['qb-core']:GetCoreObject()
+    Config.core, Config.coreObject = modules.getCore()
 
 
     local totalPlayers = GetPlayers()
@@ -21,18 +13,25 @@ local function serverCreated()
             connectedAt = os.time()
         }
 
-
-
-
-        if Config.serverCore == 'esx' then
-            local xPlayer = Config.core.GetPlayerFromId(serverid)
+        if Config.core == 'esx' then
+            local xPlayer = Config.coreObject.GetPlayerFromId(serverid)
             if xPlayer then
                 data.player_is_connecting = false
+                data.alternativeName = Config.server.roleplayName and data.playerName or xPlayer.name
                 if Config.server.roleplayName then
                     data.playerName = xPlayer.name 
                 end
+
+                if xPlayer.group == "admin" then
+                    data.tags = {
+                        admin = {
+                            color = "blue",
+                            icon = "Star",
+                            tooltip = "STAFF Team",
+                        }, 
+                    }
+                end
             end
-        
         end
 
         modules.players.addPlayer(tostring(serverid), data)
@@ -45,13 +44,29 @@ local function frameworkEvents()
         Wait(1000)
     end
 
-
     if Config.serverCore == "esx" then
         RegisterNetEvent('esx:playerLoaded', function(player, xPlayer, isNew)
-            modules.players.addPlayer(tostring(xPlayer.source), {
-                playerName = xPlayer.name,
-                player_is_connecting = false
-            })
+            local data = {
+                playerName = GetPlayerName(serverid),
+                player_is_connecting = false,
+            }
+
+            data.alternativeName = Config.server.roleplayName and data.playerName or xPlayer.name
+            if Config.server.roleplayName then
+                data.playerName = xPlayer.name 
+            end
+
+            if xPlayer.group == "admin" then
+                data.tags = {
+                    admin = {
+                        color = "blue",
+                        icon = "Star",
+                        tooltip = "STAFF Team",
+                    }, 
+                }
+            end
+
+            modules.players.addPlayer(tostring(xPlayer.source), data)
 
         end)
           
@@ -77,7 +92,6 @@ if Config.server.displayLoadingPlayers then
     end)
 
     AddEventHandler('playerDropped', function()
-        print(('%s dropped'):format(source))
     	modules.players.removePlayer(tostring(source))
     end)
 end
@@ -97,7 +111,8 @@ lib.callback.register('scoreboard:getInitialData', function(source)
             employees = locale('employees'),
             serverid = locale('serverid'),
             player_is_connecting = locale('player_is_connecting'),
-            scoreboard = locale('scoreboard')
+            scoreboard = locale('scoreboard'),
+            toggle_alt_name = locale('toggle_alt_name')
         }
     }
 end)

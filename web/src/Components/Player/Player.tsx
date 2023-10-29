@@ -16,7 +16,7 @@ const TagWithTooltip = ({ tagName, tagData }: any) => {
         color={tagData.color}
       >
         <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${tagData.color}-4)` }}>
-          {(ScoreboardIcons as any)[tagData.icon]}
+          {ScoreboardIcons.hasOwnProperty(tagData.icon) ? (ScoreboardIcons as any)[tagData.icon] : ScoreboardIcons.Star}
         </span>
       </Avatar>
     </Tooltip>
@@ -29,7 +29,7 @@ const TagWithTooltip = ({ tagName, tagData }: any) => {
       color={tagData.color}
     >
       <span style={{ fontWeight: "500", height: "1rem", fill: `var(--mantine-color-${tagData.color}-4)` }}>
-        {(ScoreboardIcons as any)[tagData.icon]}
+      {ScoreboardIcons.hasOwnProperty(tagData.icon) ? (ScoreboardIcons as any)[tagData.icon] : ScoreboardIcons.Star}
       </span>
     </Avatar>
   );
@@ -44,8 +44,8 @@ export default function Player({ playerData, T, showAlternative }: any) {
         <div key={index}>
           <Paper
             style={{
-              maxWidth: "10vw",
-              minWidth: "20vw", // Set a maximum width for the container
+              maxWidth: "100%",
+              minWidth: "100%", // Set a maximum width for the container
               borderColor: playerData[playerSource].self && `var(--mantine-color-${theme.primaryColor}-filled)`,
               textAlign: "center",
               height: "3.5rem",

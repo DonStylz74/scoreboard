@@ -10,7 +10,7 @@ Config.server = {
     roleplayName = true,
     displayLoadingPlayers = true,
     displayContent = "both",
-    leftside = true,
+    leftside = false,
     primaryColor = 'pink'
 }
 

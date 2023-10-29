@@ -36,7 +36,6 @@ const mockData = {
               }, 
               owner: {
                 color: "red",
-                icon: "Star",
                 tooltip: "Owner",
               }, 
 
