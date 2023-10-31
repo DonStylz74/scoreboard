@@ -3,8 +3,6 @@ import ScoreboardIcons from '../ScoreboardIcons.';
 
 const TagWithTooltip = ({ tagName, tagData }: any) => {
   const hasTooltip = tagData.tooltip;
-  console.log(tagData)
-
 
   return hasTooltip ? (
     <Tooltip label={hasTooltip}>

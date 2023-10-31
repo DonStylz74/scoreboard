@@ -22,7 +22,6 @@ export default function ScoreboardBody(props: any) {
     }, [scrollPosition])
 
     useEffect(() => {
-        console.log(JSON.stringify(CONTENT))
         setJumpButtonVisible(false)
         scrollToTop();
     }, [CONTENT])
