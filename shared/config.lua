@@ -2,16 +2,13 @@ lib.locale()
 Config = {}
 
 ---@param roleplayName boolean
----@param displayLoadingPlayers boolean
----@param displayContent players | societies | both 
----@param leftside boolean
----@param primaryColor MantineColor
+---@param UI_USE_LOGO boolean
+---@param UI_TABS players | societies | both 
+---@param UI_LEFT_SIDE boolean
 Config.server = {
-    roleplayName = true,
-    displayLoadingPlayers = true,
-    displayContent = "both",
-    leftside = false,
-    primaryColor = 'pink'
+    UI_LEFT_SIDE = false,
+    UI_USE_LOGO = false,
+    UI_TABS = 'both'
 }
 
 
@@ -19,10 +16,11 @@ Config.server = {
 ---@param society_label? string
 ---@param divider? string
 Config.societies = {
-    {
-        society_name = "police",
-    },
-    {
-        society_name = "ambulance",
-    },
+    'police'
 }
+
+if not IsDuplicityVersion() then return end
+
+Config.playerAdmin = function(source)
+    return ESX.GetPlayerFromId(source)?.getGroup() == "admin" or false
+end

@@ -12,7 +12,10 @@ files {
     'locales/*.json',
     'web/build/index.html',
     'web/build/**/*',
+    'server/modules/*.lua',
+    'client/modules/*.lua',
 }
+
 
 
 shared_scripts { '@ox_lib/init.lua', 'shared/config.lua' }
