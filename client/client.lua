@@ -30,9 +30,10 @@ local function toggleScoreboard()
     
     SetNuiFocus(open, open)
     SetNuiFocusKeepInput(open)
-    scoreboardData.SOCIETIES = lib.callback.await('scoreboard:requestUpdate')
 
     SendNUIMessage({ action = 'scoreboard:toggle', data = open})
+    if not open then return end
+    scoreboardData.SOCIETIES = lib.callback.await('scoreboard:requestUpdate')
     SendNUIMessage({ action = 'scoreboard:update', data = scoreboardData})
 end
 

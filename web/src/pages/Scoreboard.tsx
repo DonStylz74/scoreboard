@@ -7,9 +7,9 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { isEnvBrowser } from '@/utils/misc';
 import Societies from './Societies/Societies';
 import { ScoreboardData } from '@/types';
-import logo from '../../public/logo.png';
 import { useNuiEvent } from '@/hooks/useNuiEvent';
 import { fetchNui } from '@/utils/fetchNui';
+import logo from '/logo.png';
 
 export default function Scoreboard({ SCOREBOARD }: { SCOREBOARD: ScoreboardData }) {
   const left = true;
