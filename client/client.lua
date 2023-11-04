@@ -62,6 +62,12 @@ RegisterNuiCallback('scoreboard:initialized', function(_, cb)
         scoreboard_started = true
         scoreboardData.GLOBAL = lib.callback.await('scoreboard:requestInitialData')
         scoreboardData.GLOBAL.PLAYER_SOURCE = cache.serverId
+        scoreboardData.GLOBAL.UI = {
+            PLAYERS = locale('PLAYERS'),
+            SOCIETIES = locale('SOCIETIES'),
+            HIDE = locale('HIDE'),
+            SHOW = locale('SHOW'),
+        }
         SendNUIMessage({ action = 'scoreboard:update', data = scoreboardData})
     end
     cb({})

@@ -1,11 +1,6 @@
 {
-    "player": "Hráč",
-    "players": "Hráči",
-    "society": "Frakce",
-    "societies": "Frakce",
-    "employees": "Zaměstnanců",
-    "serverid": "Server ID",
-    "player_is_connecting": "Hráč se připojuje",
-    "scoreboard": "LSRP",
-    "toggle_alt_name": "Toggle alternative name"
+    "PLAYERS": "Hráči",
+    "SOCIETIES": "Frakce",
+    "HIDE": "Zakrýt",
+    "SHOW": "Ukázat"
 }

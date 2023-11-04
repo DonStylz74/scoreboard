@@ -25,7 +25,7 @@ lib.callback.register('scoreboard:requestUpdate', function(source)
 end)
 
 local function start()
-    Wait(1000)
+    Wait(500)
     ESXJOBS = ESX.GetJobs()
     players.initialize()
     --societies.initialize()

@@ -7,6 +7,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 export default function Footer({ SCOREBOARD, adminView, setAdminView }: { SCOREBOARD: ScoreboardData; adminView: boolean; setAdminView: any }) {
 	const playerCount = Object.keys(SCOREBOARD.PLAYERS).length
 	const maxPlayers = SCOREBOARD.GLOBAL.MAX_PLAYERS;
+	console.log(JSON.stringify(SCOREBOARD.GLOBAL.UI))
 
 	if (!SCOREBOARD.GLOBAL.PLAYER_ADMIN) return (
 		<div style={{ flex: '0 0 7rem', width: "100%", padding: "1rem" }}>
@@ -58,9 +59,9 @@ export default function Footer({ SCOREBOARD, adminView, setAdminView }: { SCOREB
 						<TooltipTrigger>
 							<Button onClick={() => setAdminView(!adminView)}>
 								{adminView ? 
-								( <> <AiFillEyeInvisible className="w-4 h-4 mr-2" /> Hide </> ) 
+								( <> <AiFillEyeInvisible className="w-4 h-4 mr-2" /> {SCOREBOARD.GLOBAL.UI.HIDE} </> ) 
 								: 
-								(	<> <AiFillEye className="w-4 h-4 mr-2" /> Show	</> )}
+								(	<> <AiFillEye className="w-4 h-4 mr-2" /> {SCOREBOARD.GLOBAL.UI.SHOW}	</> )}
 							</Button>
 						</TooltipTrigger>
 						<TooltipContent>

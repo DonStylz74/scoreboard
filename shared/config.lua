@@ -7,7 +7,7 @@ Config = {}
 ---@param UI_LEFT_SIDE boolean
 Config.server = {
     UI_LEFT_SIDE = false,
-    UI_USE_LOGO = false,
+    UI_USE_LOGO = true,
     UI_TABS = 'both'
 }
 

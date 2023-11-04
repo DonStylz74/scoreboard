@@ -40,8 +40,8 @@ export default function Scoreboard({ SCOREBOARD }: { SCOREBOARD: ScoreboardData 
               <div style={{ marginBottom: "1rem" }}>
                 <Tabs defaultValue={"players"} style={{ width: "100%", display: "grid", justifyContent: "center" }} onValueChange={(value) => setTab(value as 'players' | 'societies')} >
                   <TabsList>
-                    <TabsTrigger value="players">Players</TabsTrigger>
-                    <TabsTrigger value="societies">Society</TabsTrigger>
+                    <TabsTrigger value="players">{SCOREBOARD.GLOBAL.UI.PLAYERS}</TabsTrigger>
+                    <TabsTrigger value="societies">{SCOREBOARD.GLOBAL.UI.SOCIETIES}</TabsTrigger>
                   </TabsList>
                 </Tabs>
               </div>

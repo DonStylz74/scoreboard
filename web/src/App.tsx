@@ -12,7 +12,14 @@ const MOCKDATA = {
     UI_LEFT_SIDE: false,
     UI_USE_LOGO: true,
     UI_TABS: "both",
+    UI: {
+      PLAYERS: "Hráči",
+      SOCIETIES: "Frakce",
+      HIDE: "Hide",
+      SHOW: "Show"
+    },
   },
+
   PLAYERS: {
     1: {
       player_name: "Player 1",
@@ -143,8 +150,6 @@ export default function App() {
 
   fetchNui('scoreboard:initialized')
 
-
-    
   useNuiEvent("scoreboard:update", (newData: any) => {
     setData((data: any) => ({ ...data, ...newData }));
   });
