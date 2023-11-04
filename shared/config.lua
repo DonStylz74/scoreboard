@@ -21,6 +21,6 @@ Config.societies = {
 
 if not IsDuplicityVersion() then return end
 
-Config.playerAdmin = function(source)
-    return ESX.GetPlayerFromId(source)?.getGroup() == "admin" or false
+Config.playerAdmin = function(xPlayer)
+    return xPlayer.getGroup() == "admin" or false
 end

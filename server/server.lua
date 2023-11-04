@@ -4,9 +4,10 @@ local ESXJOBS = {}
 local MAX_PLAYERS = GetConvar('sv_maxclients', 0)
 
 lib.callback.register('scoreboard:requestInitialData', function(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
     local CFG = Config.server
     CFG.MAX_PLAYERS = MAX_PLAYERS
-    CFG.PLAYER_ADMIN = Config.playerAdmin(source)
+    CFG.PLAYER_ADMIN = xPlayer and Config.playerAdmin(xPlayer) or false
     return CFG
 end)
 
