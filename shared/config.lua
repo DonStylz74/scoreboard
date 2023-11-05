@@ -6,7 +6,7 @@ Config = {}
 ---@param UI_TABS players | societies | both 
 ---@param UI_LEFT_SIDE boolean
 Config.server = {
-    UI_LEFT_SIDE = false,
+    UI_LEFT_SIDE = true,
     UI_USE_LOGO = true,
     UI_TABS = 'both'
 }
@@ -21,6 +21,6 @@ Config.societies = {
 
 if not IsDuplicityVersion() then return end
 
-Config.playerAdmin = function(xPlayer)
-    return xPlayer.getGroup() == "admin" or false
+Config.playerAdmin = function(source)
+    return ESX.GetPlayerFromId(source)?.getGroup() == "admin" or false
 end

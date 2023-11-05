@@ -12,7 +12,7 @@ import { fetchNui } from '@/utils/fetchNui';
 import logo from '/logo.png';
 
 export default function Scoreboard({ SCOREBOARD }: { SCOREBOARD: ScoreboardData }) {
-  const left = true;
+  const left = SCOREBOARD.GLOBAL.UI_LEFT_SIDE;
   const [tab, setTab] = useState<'players' | 'societies' | 'both'>(SCOREBOARD.GLOBAL.UI_TABS);
   const [adminView, setAdminView] = useState<boolean>(SCOREBOARD.GLOBAL.PLAYER_ADMIN || false);
   const [visible, setVisible] = useState<boolean>(false);

@@ -7,7 +7,6 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 export default function Footer({ SCOREBOARD, adminView, setAdminView }: { SCOREBOARD: ScoreboardData; adminView: boolean; setAdminView: any }) {
 	const playerCount = Object.keys(SCOREBOARD.PLAYERS).length
 	const maxPlayers = SCOREBOARD.GLOBAL.MAX_PLAYERS;
-	console.log(JSON.stringify(SCOREBOARD.GLOBAL.UI))
 
 	if (!SCOREBOARD.GLOBAL.PLAYER_ADMIN) return (
 		<div style={{ flex: '0 0 7rem', width: "100%", padding: "1rem" }}>
