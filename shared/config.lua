@@ -6,7 +6,7 @@ Config = {}
 ---@param UI_TABS players | societies | both 
 ---@param UI_LEFT_SIDE boolean
 Config.server = {
-    UI_LEFT_SIDE = true,
+    UI_LEFT_SIDE = false,
     UI_USE_LOGO = true,
     UI_TABS = 'both'
 }
@@ -16,7 +16,11 @@ Config.server = {
 ---@param society_label? string
 ---@param divider? string
 Config.societies = {
-    'police'
+	'police',
+    'ambulance',
+	'cardealer',
+	'mechanic',
+	'taxi',
 }
 
 if not IsDuplicityVersion() then return end
